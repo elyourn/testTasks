@@ -10,12 +10,7 @@
 	* to be compiled and executed without exceptions and assertions.
 	*/
 
-	class Parallel{
-		constuctor(){
-			
-		}
-	}
-
+	//YOU CODE HERE
 	</script>
 	<script>
 	/************************************************
