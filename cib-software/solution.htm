@@ -9,51 +9,76 @@
 	* You have to implement missing part of the application that making code below (which untouchble) 
 	* to be compiled and executed without exceptions and assertions.
 	*/
-
 	
 	class Parallel{
 		constructor({ parallelJobs } = {}){
-			this.callQueue = [];
+			this.parallelJobs = parallelJobs;
+			this.callQueue = new Map();
+			this.pool = new Map();
+			this.result = [];
+			this.poolEnd;
 		}
 
-		startQueue(promises) {
-			const result = [];
-			let ready = Promise.resolve(null);
-
-			promises.forEach((promise) => {
-				ready = ready.then(() => {
-					return promise;
-				}).then((value) => {
-					result.push(value);
-				});
+		startQueue(id) {
+			this.callQueue.get(id).then((value) => {
+				this.clearItem(id);
+				this.result.push(value)
+				this.work(this.getNextKey(this.pool));
 			});
 
-			return ready.then(() => result);
 		}
-		addToQueue(promise) {
-			this.callQueue.push(promise);
-
+		addToQueue(id) {
+			if(this.callQueue.size < this.parallelJobs) {
+				if(!this.callQueue.has(id) && this.pool.has(id)) {
+					this.callQueue.set(id, this.pool.get(id)());
+					this.startQueue(id);
+				}
+			}
 			return this;
 		}
-		clearQueue() {
-			this.callQueue = [];
+		clearItem(id) {
+			this.callQueue.delete(id);
+			this.pool.delete(id);
 		}
+		clearAll() {
+			this.callQueue.clear();
+			this.pool.clear();
+		}
+		poolEnd() {}
 		done(func) {
-			const finishQueue = this.startQueue(this.callQueue);
-
-			finishQueue.then((result) => {
-				func(result);
-				this.clearQueue();
-			});
-			
+			this.poolEnd = func;
+	
 			return this;
 		}
-		job(func) {
+		getNextKey(obj) {
+			const keys = obj.keys();
+
+			return keys.next().value;
+		}
+		getId() {
+			return '_' + Math.random().toString(36).substr(2, 9);
+		}
+		jobsPool(func) {
 			const promise = new Promise((resolve, reject) => {
 				func(resolve);
 			});
 
-			this.addToQueue(promise);
+			return promise;
+
+		}
+		work(id) {
+			if(this.pool.size > 0) {
+				this.addToQueue(id);
+			} else {
+				this.poolEnd(this.result);
+				this.clearAll();
+			}
+			
+		}
+		job(func) {
+			const id = this.getId();
+			this.pool.set(id, this.jobsPool.bind(this, func));
+			this.work(id);
 
 			return this;
 		}
