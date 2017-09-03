@@ -15,6 +15,7 @@
 			this.parallelJobs = parallelJobs;
 			this.callQueue = new Map();
 			this.pool = new Map();
+			this.poolKeys = this.pool.keys();
 			this.result = [];
 			this.poolEnd;
 		}
@@ -22,7 +23,7 @@
 		startQueue(id) {
 			this.callQueue.get(id).then((value) => {
 				this.clearItem(id);
-				this.result.push(value)
+				this.result.push(value);
 				this.work(this.getNextKey(this.pool));
 			});
 
@@ -50,10 +51,8 @@
 	
 			return this;
 		}
-		getNextKey(obj) {
-			const keys = obj.keys();
-
-			return keys.next().value;
+		getNextKey() {
+			return this.poolKeys.next().value;
 		}
 		getId() {
 			return '_' + Math.random().toString(36).substr(2, 9);
