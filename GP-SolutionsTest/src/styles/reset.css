@@ -1,0 +1,14 @@
+/*-------------------------------------- RESET ----------------------------------------------*/
+
+	pre,figure,dl,dd,dt,ul,ol,h1,h2,h3,h4,h5,p,form,html,body{margin:0;padding:0}img{border:0;vertical-align:top;-ms-interpolation-mode:bicubic}body{line-height:1}ol,ul{list-style-type:none}:focus{outline:none}table{border-collapse:collapse;border-spacing:0}.clear{clear:both;height:1px;font-size:1px;visibility:hidden}ins{text-decoration:none}input,textarea,select{margin:0}a{cursor:pointer;text-decoration:none;}sup{vertical-align:baseline}
+	.cfix:before,.cfix:after{content:"";display:table}.cfix:after{clear:both}
+	.cinb{font-size:14px}
+	/*.safari .cinb{width:100%;display:table;}*/
+	input::-moz-focus-inner{padding:0;border:0;margin-top:-2px;margin-bottom: -2px;}
+	button::-moz-focus-inner{padding:0;border:0;}
+	.ios input,
+	.ios button,
+	.ios select{-webkit-appearance:none;}
+	figure{padding:0;margin:0;-webkit-margin-before:0;-webkit-margin-after:0;-webkit-margin-start:0;-webkit-margin-end:0}
+	fieldset{margin:0;padding:0;-webkit-margin-start:0;-webkit-margin-end:0;-webkit-padding-before:0;-webkit-padding-start:0;-webkit-padding-end:0;-webkit-padding-after:0;border:0}
+	button{margin:0;padding:0;border:none;outline:none;background:transparent;}

@@ -1,0 +1,30 @@
+Implement single page application with react.js 
+
+* Specification 
+Single page application with button, table and input fields. 
+
+Button starts execution process: 
+- Takes 2 operands from input fields 
+- Takes one of existing operation 
+- Calculates result and stores it to the table as history 
+
+** Possible operations 
+- + (sum) 
+- / (divide) 
+- % (remainder of a division) 
+- Highest prime number between A and B if available 
+
+** Possible operands 
+Any number 
+
+* Requirement 
+- Provide source code in archive with build/start instructions 
+- Provide tests 
+
+** Optional 
+- Provide git/hg repository in archive 
+- Prefer to provide styles for components. Feel free to use any existing 
+CSS frameworks or libs 
+-- 
+Best Regards, 
+Irina Belogrivaya, HR manager 
