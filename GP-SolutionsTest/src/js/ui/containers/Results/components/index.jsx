@@ -23,9 +23,9 @@ class ResultsComponent extends PureComponent {
 				</div>
 				<div {...page("middle")}>
 					<div {...results('fields')}>
-                        {history.map((item) => {
+                        {history.map((item, i) => {
 							return(
-							<div {...results("item")}>
+							<div key={i} {...results("item")}>
 								{item && item}
 							</div>)
                         })}
