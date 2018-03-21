@@ -59,7 +59,7 @@
 		}
 		jobsPool(func) {
 			const promise = new Promise((resolve, reject) => {
-				func(resolve);
+				setTimeout(() => func(resolve), 0);
 			});
 
 			return promise;
